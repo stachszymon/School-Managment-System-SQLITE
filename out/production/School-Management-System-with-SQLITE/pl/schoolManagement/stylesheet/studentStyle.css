@@ -1,0 +1,36 @@
+.header-section GradeButton{
+
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-background-color: #f7f7ff;
+    -fx-border-width: 1;
+    -fx-text-fill: #0000ff;
+    -fx-font-size: 2em;
+    -fx-border-color: #60656F;
+    -fx-pref-width: 50;
+    -fx-pref-height: 50;
+}
+.header-section GradeButton:selected{
+
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-background-color: #d8d8ff;
+    -fx-border-width: 2;
+    -fx-text-fill: #0000ff;
+    -fx-font-size: 2em;
+    -fx-border-color: #60656F;
+    -fx-pref-width: 50;
+    -fx-pref-height: 50;
+}
+.header-section GradeButton:hover {
+
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-background-color: #e5e5ff;
+    -fx-border-width: 1;
+    -fx-text-fill: #0000ff;
+    -fx-font-size: 2em;
+    -fx-border-color: #60656F;
+    -fx-pref-width: 50;
+    -fx-pref-height: 50;
+}

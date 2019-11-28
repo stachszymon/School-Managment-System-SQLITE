@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderPaneSubject" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.schoolManagement.controllers.EditSubjectController">
+    <center>
+        <VBox>
+        <GridPane alignment="CENTER" minHeight="150.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="Przedmiot ID" GridPane.halignment="CENTER" />
+                <Label text="Nazwa" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                <Label text="Opis" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                <Label fx:id="idField" text="nowy" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                    <GridPane.margin>
+                        <Insets left="25.0" right="25.0" />
+                    </GridPane.margin></Label>
+                <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets left="25.0" right="25.0" />
+                    </GridPane.margin></TextField>
+                <TextArea fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets left="25.0" right="25.0" />
+                    </GridPane.margin></TextArea>
+            </children>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+        </GridPane>
+         <Accordion fx:id="accordion" VBox.vgrow="ALWAYS">
+           <panes>
+             <TitledPane animated="false" text="Przypisani nauczyciele">
+                  <content>
+                     <VBox prefHeight="200.0" prefWidth="100.0">
+                        <children>
+                           <ToolBar prefHeight="40.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                              <items>
+                                 <Button fx:id="addButtonTeacher" mnemonicParsing="false" onAction="#handleButton" text="Dodaj" />
+                                 <Button fx:id="delButtonTeacher" mnemonicParsing="false" onAction="#handleButton" text="Usuń zanaczonych" />
+                              </items>
+                           </ToolBar>
+                           <TableView fx:id="teacherTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                             <columns>
+                               <TableColumn fx:id="idTeacherColumn" prefWidth="75.0" text="id" />
+                               <TableColumn fx:id="nameTeacherColumn" prefWidth="150.0" text="imię" />
+                                 <TableColumn fx:id="surnameTeacherColumn" minWidth="0.0" prefWidth="182.0" text="nazwisko" />
+                             </columns>
+                           </TableView>
+                        </children>
+                     </VBox>
+                  </content>
+             </TitledPane>
+             <TitledPane animated="false" text="Przypisani uczniowie">
+                  <content>
+                     <VBox prefHeight="200.0" prefWidth="100.0">
+                        <children>
+                           <ToolBar prefHeight="40.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                              <items>
+                                 <Button fx:id="addButtonStudent" mnemonicParsing="false" onAction="#handleButton" text="Dodaj" />
+                                 <Button fx:id="delButtonStudent" mnemonicParsing="false" onAction="#handleButton" text="Usuń zanaczonych" />
+                              </items>
+                           </ToolBar>
+                           <TableView fx:id="studentTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                             <columns>
+                               <TableColumn fx:id="idStudentColumn" prefWidth="75.0" text="id" />
+                               <TableColumn fx:id="nameStudentColumn" prefWidth="154.0" text="imię" />
+                                 <TableColumn fx:id="surnameStudentColumn" prefWidth="178.0" text="nazwisko" />
+                             </columns>
+                           </TableView>
+                        </children>
+                     </VBox>
+                  </content>
+             </TitledPane>
+           </panes>
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin>
+         </Accordion>
+        </VBox>
+    </center>
+    <bottom>
+        <ButtonBar prefHeight="40.0" BorderPane.alignment="CENTER">
+            <buttons>
+                <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleButton" text="Anuluj" />
+                <Button fx:id="okButton" mnemonicParsing="false" onAction="#handleButton" text="Zapisz" />
+            </buttons>
+            <padding>
+                <Insets bottom="10.0" left="25.0" right="25.0" />
+            </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets top="5.0" />
+         </BorderPane.margin>
+        </ButtonBar>
+    </bottom>
+</BorderPane>

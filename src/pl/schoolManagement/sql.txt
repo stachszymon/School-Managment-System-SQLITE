@@ -1,0 +1,64 @@
+CREATE TABLE `login` (
+	`login_id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`login`	TEXT NOT NULL,
+	`password`	TEXT NOT NULL,
+	`rank`	INTEGER NOT NULL DEFAULT 0,
+	`user_id`	INTEGER NOT NULL
+);
+
+CREATE TABLE `teachers` (
+	`teacher_id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`degree`	TEXT,
+	`name`	TEXT NOT NULL,
+	`surname`	TEXT NOT NULL,
+	`email`	TEXT NOT NULL
+);
+
+CREATE TABLE `students` (
+	`student_id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`name`	TEXT NOT NULL,
+	`surname`	TEXT NOT NULL,
+	`email`	TEXT NOT NULL
+);
+
+CREATE TABLE `subjects` (
+	`subject_id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`name`	TEXT NOT NULL
+);
+
+CREATE TABLE `grades` (
+	`grade_id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`subject_id`	INTEGER NOT NULL,
+	`student_id`	INTEGER NOT NULL,
+	`date`	INTEGER NOT NULL,
+	`value`	INTEGER NOT NULL,
+	`multiple`	NUMERIC NOT NULL,
+	`description`	TEXT,
+	`teacher_id`	INTEGER NOT NULL,
+	FOREIGN KEY(`teacher_id`) REFERENCES `teachers`(`teacher_id`),
+	FOREIGN KEY(`subject_id`) REFERENCES `subjects`(`subject_id`),
+	FOREIGN KEY(`student_id`) REFERENCES `students`(`student_id`)
+);
+
+CREATE TABLE `subjectsTeacher` (
+	`subject_id`	INTEGER NOT NULL DEFAULT 1,
+	`teacher_id`	INTEGER NOT NULL DEFAULT 1,
+	FOREIGN KEY(`subject_id`) REFERENCES `subjects`(`subject_id`),
+	FOREIGN KEY(`teacher_id`) REFERENCES `teachers`(`teacher_id`)
+);
+
+SELECT students.name , students.surname , subjects.name , grades.value , grades.multiple , grades.description , teachers.degree , teachers.name , teachers.surname
+FROM grades
+    INNER JOIN students
+    ON grades.student_id = students.student_id
+    INNER JOIN teachers
+    ON grades.teacher_id = teachers.teacher_id
+    INNER JOIN subjects
+    ON grades.subject_id = subjects.subject_id
+    WHERE students.surname LIKE 'Stach' AND students.name LIKE 'Szymon';
+
+SELECT subjects.name , teachers.name , teachers.surname FROM subjectsTeacher
+   INNER JOIN teachers
+   ON subjectsTeacher.teacher_id = teachers.teacher_id
+   INNER JOIN subjects
+   ON subjectsTeacher.subject_id = subjects.subject_id ;
